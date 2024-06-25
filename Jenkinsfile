@@ -45,7 +45,7 @@ agent any
     // }
      steps {
     //   withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'kubeconfig', namespace: 'default', restrictKubeConfigAccess: false, serverUrl: 'https://192.168.0.26:6443', variable: 'KUBECONFIG') {
-    withKubeConfig([credentialsId: 'kubeconfig', variable: 'KUBECONFIG']) {
+    withCredentials([file(credentialsId: "kubeconfig", variable: "KUBECONFIG")]) {
       // sh 'kubectl apply -f deployment.yaml'
       // sh 'kubectl apply -f service.yaml'
       sh 'mkdir -p ~/.kube/'
