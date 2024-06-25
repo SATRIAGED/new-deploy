@@ -1,4 +1,4 @@
-def appName = 'web-app'
+def appName = 'new-deploy'
 def namespace = 'web'
 
 
@@ -48,6 +48,11 @@ agent any
       // sh 'kubectl apply -f deployment.yaml'
       // sh 'kubectl apply -f service.yaml'
       sh 'helm list'
+      sh """
+              helm upgrade ${appName} ./helm/${appName} \
+                --set-string image.repository=${IMAGE_REPO},image.tag=${IMAGE_TAG} \
+                -f ./new-deploy/values.yaml --debug --install --namespace ${namespace}
+            """
     // some block
       }
       // withKubeConfig([credentialsId: 'kubeconfig']) {
