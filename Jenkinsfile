@@ -1,4 +1,4 @@
-def appName = 'new-deploy'
+def appName = 'web-app'
 def namespace = 'web'
 
 
@@ -44,15 +44,12 @@ agent any
     //   branch 'main'
     // }
      steps {
-      withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'kubeconfig', namespace: 'default', restrictKubeConfigAccess: false, serverUrl: 'https://192.168.0.26:6443') {
+      withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'kubeconfig', namespace: 'default', restrictKubeConfigAccess: false, serverUrl: 'https://192.168.0.26:6443', variable: 'KUBECONFIG') {
       // sh 'kubectl apply -f deployment.yaml'
       // sh 'kubectl apply -f service.yaml'
-      sh 'helm list'
-      sh """
-              helm upgrade ${appName} ./helm/${appName} \
-                --set-string image.repository=${IMAGE_REPO},image.tag=${IMAGE_TAG} \
-                -f ./new-deploy/values.yaml --debug --install --namespace ${namespace}
-            """
+      sh 'mkdir -p ~/.kube/'
+      sh 'cat ${KUBECONFIG} >> ~/.kube/config'
+      
     // some block
       }
       // withKubeConfig([credentialsId: 'kubeconfig']) {
