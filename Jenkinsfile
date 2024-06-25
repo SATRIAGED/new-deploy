@@ -25,19 +25,19 @@ agent any
             }
         }
 
-        stage("installing the helm chart") {
-            steps {
-                withCredentials([vaultString(credentialsId: 'kubeconfig', variable: '')]) {
-                    sh("gcloud container clusters kubeconfig ${params.GKE_CLUSTER_NAME} --zone ${params.GCP_PROJECT_ZONE} --project ${params.GCP_PROJECT_ID}")
-                    sh "helm install \
-                            --set image.repository=gcr.io/${params.GCP_PROJECT_ID}/${params.GCR_IMAGE_NAME} \
-                            --set image.tag=${params.GCR_IMAGE_TAG} \
-                        new-helm new-deploy"
-                    sh "sleep 45s"
-                    sh "kubectl get svc --namespace default new-helm-new-deploy"
-                }
-            }
-        }
+        // stage("installing the helm chart") {
+        //     steps {
+        //         withCredentials([vaultString(credentialsId: 'kubeconfig', variable: '')]) {
+        //             sh("gcloud container clusters kubeconfig ${params.GKE_CLUSTER_NAME} --zone ${params.GCP_PROJECT_ZONE} --project ${params.GCP_PROJECT_ID}")
+        //             sh "helm install \
+        //                     --set image.repository=gcr.io/${params.GCP_PROJECT_ID}/${params.GCR_IMAGE_NAME} \
+        //                     --set image.tag=${params.GCR_IMAGE_TAG} \
+        //                 new-helm new-deploy"
+        //             sh "sleep 45s"
+        //             sh "kubectl get svc --namespace default new-helm-new-deploy"
+        //         }
+        //     }
+        // }
 
  stage("Deploy Kubernetes") {
     // when {
@@ -47,9 +47,7 @@ agent any
       withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'kubeconfig', namespace: 'default', restrictKubeConfigAccess: false, serverUrl: 'https://192.168.0.26:6443') {
       // sh 'kubectl apply -f deployment.yaml'
       // sh 'kubectl apply -f service.yaml'
-      sh "mkdir -p ~/.kube/"
-      sh "kubectl apply -f deployment.yaml"
-      sh "kubectl apply -f service.yaml"
+      sh 'helm list'
     // some block
       }
       // withKubeConfig([credentialsId: 'kubeconfig']) {
