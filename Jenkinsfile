@@ -53,7 +53,7 @@ agent any
       sh "helm install \
               --set image.repository=gcr.io/${params.GCP_PROJECT_ID}/${params.GCR_IMAGE_NAME} \
               --set image.tag=${params.GCR_IMAGE_TAG} \
-          new-deploy"
+          new-deploy --generate-name"
       
     // some block
       }
