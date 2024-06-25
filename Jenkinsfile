@@ -4,7 +4,7 @@ def namespace = 'web'
 
 pipeline {
 
-agent { dockerfile true }
+agent any
  stages {
      stage("Checkout code") {
          steps {
