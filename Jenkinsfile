@@ -14,7 +14,7 @@ agent { dockerfile true }
      stage('Git clone') {
       steps {
         git branch: 'main', credentialsId: 'usnmepswdGIT',
-          url: 'https://github.com/SATRIAGED/web-app.git'
+          url: 'https://github.com/SATRIAGED/new-deploy.git'
       }
     }
      stage("building the image") {
