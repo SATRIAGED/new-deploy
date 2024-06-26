@@ -1,5 +1,5 @@
-def appName = 'web-app'
-def namespace = 'web'
+def appName = 'new-deploy'
+def namespace = 'default'
 
 
 pipeline {
