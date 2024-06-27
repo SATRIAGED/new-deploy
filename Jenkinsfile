@@ -22,7 +22,7 @@ agent any
                 script {
                     sh "docker build -t new-deploy/nginx:latest ."
                     sh "docker images"
-                    sh "docker run -d -p 80:80 new-deploy/nginx:latest"
+                    sh "docker run -d -p 8081:8081 new-deploy/nginx:latest"
                 }
             }
         }
