@@ -20,7 +20,9 @@ agent any
      stage("building the image") {
             steps {
                 script {
-                    sh "docker build -t satria/new-deploy:latest ."
+                    sh "docker build -t new-deploy/nginx:latest ."
+                    sh "docker images"
+                    sh "docker run -d -p 80:80 new-deploy/nginx:latest"
                 }
             }
         }
@@ -51,7 +53,7 @@ agent any
       sh 'mkdir -p ~/.kube/'
       sh 'cat ${KUBECONFIG} >> ~/.kube/config'
       sh "helm install \
-              --set image.repository=satria/new-deploy \
+              --set image.repository=new-deploy/nginx \
               --set image.tag=latest \
           new-deploy --generate-name"
       
