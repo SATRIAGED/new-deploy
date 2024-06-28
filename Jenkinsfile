@@ -55,7 +55,7 @@ agent any
       sh "helm install \
               --set image.repository=new-deploy/nginx \
               --set image.tag=latest \
-              -f ./new-deploy/values.yaml --debug --install --namespace default \
+              -f ./new-deploy/values.yaml --debug --namespace default \
           new-deploy --generate-name"
       
     // some block
