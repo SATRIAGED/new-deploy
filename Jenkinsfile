@@ -22,7 +22,7 @@ agent any
                 script {
                     sh "docker build -t new-deploy/nginx:latest ."
                     sh "docker images"
-                    sh "docker run -d -p 81:80 new-deploy/nginx:latest"
+                    // sh "docker run -d -p 81:80 new-deploy/nginx:latest"
                 }
             }
         }
@@ -56,7 +56,7 @@ agent any
               --set image.repository=new-deploy/nginx \
               --set image.tag=latest \
               -f ./new-deploy/values.yaml --debug --namespace default \
-          new-deploy"
+          new-deploy --generate-name"
       
     // some block
       }
