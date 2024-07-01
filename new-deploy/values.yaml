@@ -82,10 +82,10 @@ volumes: []
     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-- name: new-deploy
-  mountPath: "/etc/new-deploy"
-  readOnly: true
+# volumeMounts: []
+# - name: new-deploy
+#   mountPath: "/etc/new-deploy"
+#   readOnly: true
 
 nodeSelector: {}
 
