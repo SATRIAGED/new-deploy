@@ -1,2 +1,2 @@
-FROM nginx
-COPY index.html /usr/share/nginx/html
+FROM nginx as build
+COPY --from=build index.html /usr/share/nginx/html
