@@ -10,7 +10,9 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-imagePullSecrets: []
+imagePullSecrets:
+- name: new-deploy
+
 nameOverride: ""
 fullnameOverride: ""
 
@@ -80,6 +82,11 @@ autoscaling:
 #   secret:
 #     secretName: new-deploy
 #     optional: false
+
+# volumes:
+#     - name: data
+#       persistentVolumeClaim:
+#         claimName: new-deploy
 
 # Additional volumeMounts on the output Deployment definition.
 # volumeMounts: []
