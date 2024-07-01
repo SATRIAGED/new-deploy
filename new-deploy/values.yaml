@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: new-deploy/nginx
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
@@ -74,6 +74,18 @@ autoscaling:
   maxReplicas: 10
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
+
+volumes: []
+- name: new-deploy
+  secret:
+    secretName: new-deploy
+    optional: false
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts: []
+- name: new-deploy
+  mountPath: "/etc/new-deploy"
+  readOnly: true
 
 nodeSelector: {}
 
