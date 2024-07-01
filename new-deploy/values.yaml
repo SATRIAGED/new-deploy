@@ -75,11 +75,11 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-volumes: []
-- name: new-deploy
-  secret:
-    secretName: new-deploy
-    optional: false
+# volumes: []
+# - name: new-deploy
+#   secret:
+#     secretName: new-deploy
+#     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
 # volumeMounts: []
