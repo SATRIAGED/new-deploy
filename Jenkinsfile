@@ -56,7 +56,7 @@ agent any
               --set image.repository=new-deploy/nginx \
               --set image.tag=latest \
               -f ./new-deploy/values.yaml --debug --namespace default \
-          new-deploy --generate-name"
+          new-deploy"
       
     // some block
       }
