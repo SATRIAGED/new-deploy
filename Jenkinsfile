@@ -53,7 +53,7 @@ agent any
       sh 'mkdir -p ~/.kube/'
       sh 'cat ${KUBECONFIG} >> ~/.kube/config'
       sh "helm install \
-              --set image.repository=new-deploy/nginx \
+              --set image.repository=localhost:5000/new-deploy \
               --set image.tag=latest \
               -f ./new-deploy/values.yaml --debug --namespace default \
           new-deploy --generate-name"
