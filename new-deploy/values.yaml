@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: localhost:5000
   image: localhost:5000/new-deploy
-  pullPolicy: IfNotPresent
+  pullPolicy: IfNotExist
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
