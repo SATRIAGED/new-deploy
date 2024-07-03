@@ -7,11 +7,11 @@ replicaCount: 1
 image:
   repository: localhost:5000
   image: localhost:5000/new-deploy
-  pullPolicy: IfNotExist
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
-imagePullSecrets: []
+imagePullSecrets: IfNotExist
 nameOverride: ""
 fullnameOverride: ""
 
